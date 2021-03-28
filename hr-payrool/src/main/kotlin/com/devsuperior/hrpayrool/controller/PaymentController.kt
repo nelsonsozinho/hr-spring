@@ -20,6 +20,4 @@ class PaymentController(private val service: PaymentService) {
         return ResponseEntity.ok(service.getPayment(workerId, days))
     }
 
-
-
 }
