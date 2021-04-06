@@ -13,4 +13,6 @@ data class Worker(
         val name: String,
 
         val dailyIncome: Double
+
+
 )
