@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.ws.rs.core.Response
 
 @RefreshScope
 @RestController
@@ -33,7 +32,7 @@ class WorkerController(
     fun getWorker(@PathVariable("id") id: Long): ResponseEntity<Worker> {
         logger.info("PORT = " + env.getProperty("local.server.port"))
         return ResponseEntity.ok(workerService.findWorker(id))
-    };
+    }
 
     @GetMapping("/configs")
     fun getConfigs(): ResponseEntity<Worker> {
