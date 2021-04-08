@@ -12,6 +12,7 @@ data class User(
 
     val name: String,
 
+    @Column(unique = true)
     val email: String,
 
     val password: String,
