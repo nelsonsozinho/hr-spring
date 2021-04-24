@@ -16,8 +16,6 @@ class ResourceServerConfig: ResourceServerConfigurerAdapter() {
     @Autowired
     lateinit var jwtTokenStore: JwtTokenStore;
 
-    private val ADMIN = arrayOf("/hr-payroll/**", "/hr-user/**")
-
     override fun configure(resources: ResourceServerSecurityConfigurer) {
         resources.tokenStore(jwtTokenStore)
     }
@@ -26,7 +24,11 @@ class ResourceServerConfig: ResourceServerConfigurerAdapter() {
         http.authorizeRequests()
             .antMatchers("/hr-oauth/oauth/token").permitAll()
             .antMatchers(HttpMethod.GET, "/hr-worker/**").hasAnyRole("OPERATOR", "ADMIN")
-            .antMatchers("/hr-payroll/**", "/hr-user/**").hasRole("ADMIN")
+            .antMatchers(
+                "/hr-payroll/**", "/hr-user/**",
+                "/actuator/**",
+                "/hr-worker/actuator/**",
+                "/hr-oauth/actuator/**").hasRole("ADMIN")
             .anyRequest().authenticated()
     }
 }
